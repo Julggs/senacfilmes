@@ -3,7 +3,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {useState} from 'react';
 
-export default function Card({titulo, nota, poster}) {
+export default function Card({filme}) {
+    const poster = "https://image.tmdb.org/t/p/w200/" + filme.poster_path
     const [favorito, setFavorito] = useState(false)
 
     function favoritar(){
@@ -23,11 +24,11 @@ export default function Card({titulo, nota, poster}) {
             }
         <img className="rounded" src={poster} alt="" />
         <span className="text -lg font-bold line-clamp-1">
-            {titulo}
+            {filme.title}
             </span>
         <div>
             <i></i>
-            <span>{nota}</span>
+            <span>{filme.vote_average.toFixed(1)}</span>
         </div>
         <a href="" className="bg-blue-400 text-white w-full rounded text-center">Detalhes</a>
         </div>
