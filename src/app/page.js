@@ -12,15 +12,12 @@ export default function Home() {
   // ----- Colocar API de anime aqui -----
   const options = {
     method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZTkyMjY2NzQ4MWFiMjA3ZDY0MjQ1MGIwZWZiNDYxZSIsInN1YiI6IjVlYTA5ZTZiYmU0YjM2MDAxYzU5NWExNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Vhu0pPCiIwmtrpyOHdBlQid8HJJllaHthn1MERS_ANg'
-    }
+    
   };
 
-  fetch('https://api.themoviedb.org/3/trending/movie/week?language=pt-BR', options)
+  fetch('https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=0', options)
     .then(response => response.json())
-    .then(response => setFilmes(response.results))
+    .then(response => setFilmes(response.data))
     .catch(err => console.error(err));
   // ----------------------------------------
   return (
@@ -42,8 +39,13 @@ export default function Home() {
         {filmes && filmes.map(filme => <Card filme={filme} />)}
       </section>
       <Titulo>Animes em Alta</Titulo>
-      <Titulo>Filmes</Titulo>
-
+      <section className='flex flex-wrap gap-2 p-4'>
+        {filmes && filmes.map(filme => <Card filme={filme} />)}
+      </section>
+      <Titulo>Animes</Titulo>
+      <section className='flex flex-wrap gap-2 p-4'>
+        {filmes && filmes.map(filme => <Card filme={filme} />)}
+      </section>
     </main>
   )
 }
